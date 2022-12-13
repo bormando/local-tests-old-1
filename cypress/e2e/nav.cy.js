@@ -1,19 +1,22 @@
 describe('Navigation', () => {
-  it('Courses', () => {
+  beforeEach(() => {
     cy.visit('/user/login')
-    cy.get('#normal_login_email')
-      .type('test@example.com')
-    cy.get('#normal_login_password')
-      .type('Qwerty!23')
-    cy.get('[type="submit"]')
-      .click()
+    cy.get('#normal_login_email').type('test@example.com')
+    cy.get('#normal_login_password').type('Qwerty!23')
+    cy.get('[type="submit"]').click()
+  })
 
-    cy.get('[data-qa="topmenu-Courses"]')
-      .click()
+  it('Courses', () => {
+    cy.get('[data-qa="topmenu-Courses"]').click()
 
-    cy.location('pathname')
-      .should('include', '/course')
-    cy.contains('Interactive Courses')
-      .should('be.visible')
+    cy.location('pathname').should('include', '/course')
+    cy.contains('Interactive Courses').should('be.visible')
+  })
+
+  it('Interview Questions', () => {
+    cy.get('[data-qa="topmenu-Interview Questions"]').click()
+
+    cy.location('pathname').should('include', '/flash')
+    cy.contains('Interview practice cards').should('be.visible')
   })
 })
