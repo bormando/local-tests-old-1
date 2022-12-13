@@ -2,11 +2,16 @@
   "name": "local-tests",
   "description": "End-to-end tests on Cypress for localcoding.us",
   "scripts": {
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "lint": "prettier cypress/ --check",
+    "format": "prettier cypress/ --write --list-different"
   },
   "author": "PASV.US",
   "license": "ISC",
   "dependencies": {
     "cypress": "^11.2.0"
+  },
+  "devDependencies": {
+    "prettier": "2.8.1"
   }
 }
