@@ -1,8 +1,8 @@
 describe('Navigation', () => {
   beforeEach(() => {
     cy.visit('/user/login')
-    cy.get('#normal_login_email').type('test@example.com')
-    cy.get('#normal_login_password').type('Qwerty!23')
+    cy.get('#normal_login_email').type(Cypress.env('email'))
+    cy.get('#normal_login_password').type(Cypress.env('password'))
     cy.get('[type="submit"]').click()
   })
 

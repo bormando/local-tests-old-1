@@ -4,8 +4,8 @@ describe('Authentication', () => {
   })
 
   it('Log in with valid credentials', () => {
-    cy.get('#normal_login_email').type('test@example.com')
-    cy.get('#normal_login_password').type('Qwerty!23')
+    cy.get('#normal_login_email').type(Cypress.env('email'))
+    cy.get('#normal_login_password').type(Cypress.env('password'))
     cy.get('[type="submit"]').click()
 
     cy.location('pathname').should('include', 'profile')
@@ -13,7 +13,7 @@ describe('Authentication', () => {
   })
 
   it('Log in with incorrect credentials', () => {
-    cy.get('#normal_login_email').type('test@example.com')
+    cy.get('#normal_login_email').type(Cypress.env('email'))
     cy.get('#normal_login_password').type('123456')
     cy.get('[type="submit"]').click()
 
