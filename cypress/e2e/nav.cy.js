@@ -1,9 +1,7 @@
 describe('Navigation', () => {
   beforeEach(() => {
-    cy.visit('/user/login')
-    cy.get('#normal_login_email').type(Cypress.env('email'))
-    cy.get('#normal_login_password').type(Cypress.env('password'))
-    cy.get('[type="submit"]').click()
+    cy.login(Cypress.env('email'), Cypress.env('password'))
+    cy.visit('/')
   })
 
   it('Courses', () => {
