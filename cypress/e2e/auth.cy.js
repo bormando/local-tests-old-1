@@ -1,24 +1,22 @@
+import AuthPage from '../pages/auth.page'
+
 describe('Authentication', () => {
   beforeEach(() => {
-    cy.visit('/user/login')
+    AuthPage.open()
   })
 
   it('Log in with valid credentials', () => {
-    cy.get('#normal_login_email').type(Cypress.env('email'))
-    cy.get('#normal_login_password').type(Cypress.env('password'))
-    cy.get('[type="submit"]').click()
+    AuthPage.logIn(Cypress.env('email'), Cypress.env('password'))
 
     cy.location('pathname').should('include', 'profile')
     cy.get('.ant-avatar-square').should('be.visible')
   })
 
   it('Log in with incorrect credentials', () => {
-    cy.get('#normal_login_email').type(Cypress.env('email'))
-    cy.get('#normal_login_password').type('123456')
-    cy.get('[type="submit"]').click()
+    AuthPage.logIn(Cypress.env('email'), '123456')
 
     cy.location('pathname').should('include', '/user/login')
-    cy.get('.ant-notification-notice-message')
+    AuthPage.toast
       .should('be.visible')
       .should('have.text', 'Auth failed')
   })
