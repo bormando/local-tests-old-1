@@ -1,20 +1,24 @@
+import MainPage from '../pages/app/main.page'
+import CoursesPage from '../pages/app/courses.page'
+import InterviewQuestionsPage from '../pages/app/interview-questions.page'
+
 describe('Navigation', () => {
   beforeEach(() => {
     cy.login(Cypress.env('email'), Cypress.env('password'))
-    cy.visit('/')
+    MainPage.open()
   })
 
   it('Courses', () => {
-    cy.get('[data-qa="topmenu-Courses"]').click()
+    MainPage.navbar.linkCourses.click()
 
-    cy.location('pathname').should('include', '/course')
-    cy.contains('Interactive Courses').should('be.visible')
+    CoursesPage.path.should('include', '/course')
+    CoursesPage.header.should('be.visible')
   })
 
   it('Interview Questions', () => {
-    cy.get('[data-qa="topmenu-Interview Questions"]').click()
+    MainPage.navbar.linkInterviewQuestions.click()
 
-    cy.location('pathname').should('include', '/flash')
-    cy.contains('Interview practice cards').should('be.visible')
+    InterviewQuestionsPage.path.should('include', '/flash')
+    InterviewQuestionsPage.header.should('be.visible')
   })
 })
