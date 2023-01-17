@@ -4,6 +4,7 @@
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run",
+    "cy:run:ci": "cypress run --record",
     "lint": "prettier cypress/ --check",
     "format": "prettier cypress/ --write --list-different"
   },
